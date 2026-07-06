@@ -8,11 +8,27 @@ RUN dnf -y update && \
     dnf clean all
 
 # COPR Packages
+
+# Ghostty
 RUN dnf -y copr enable scottames/ghostty && \
     dnf -y install ghostty && \
     dnf clean all
 
-# Enable the native bootc background update timer
+# Koi
+RUN dnf -y copr enable birkch/Koi/ && \
+    dnf -y install \
+        Koi \
+        cmake \
+        extra-cmake-modules \
+        kf6-kconfigwidgets-devel \
+        kf6-kconfig-devel \
+        kf6-kcoreaddons-devel \
+        kf6-kwidgetsaddons-devel \
+        qt6-qtbase-devel \
+        hicolor-icon-theme \
+        && \
+    dnf clean all
+
 RUN systemctl enable bootc-fetch-apply-updates.timer
 
 RUN bootc container lint
