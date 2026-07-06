@@ -15,7 +15,7 @@ RUN dnf -y copr enable scottames/ghostty && \
     dnf clean all
 
 # Koi
-RUN dnf -y copr enable birkch/Koi/ && \
+RUN dnf -y copr enable birkch/Koi && \
     dnf -y install \
         Koi \
         cmake \
