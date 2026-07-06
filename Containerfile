@@ -4,6 +4,7 @@ FROM quay.io/fedora-ostree-desktops/kinoite:44
 RUN dnf -y update && \
     dnf -y install \
     stow \
+    just \
     zsh && \
     dnf clean all
 
