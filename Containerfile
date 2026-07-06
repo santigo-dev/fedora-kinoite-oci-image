@@ -4,9 +4,12 @@ FROM quay.io/fedora-ostree-desktops/kinoite:44
 RUN dnf -y update && \
     dnf -y install \
     stow \
+    keyd \
     just \
     zsh && \
     dnf clean all
+
+RUN systemctl enable keyd
 
 # COPR Packages
 
