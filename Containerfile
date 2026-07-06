@@ -3,7 +3,7 @@ FROM quay.io/fedora-ostree-desktops/kinoite:44
 # Packages
 RUN dnf -y update && \
     dnf -y install \
-    git \
+    stow \
     zsh && \
     dnf clean all
 
