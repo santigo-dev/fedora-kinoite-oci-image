@@ -39,7 +39,5 @@ RUN dnf -y copr enable alternateved/keyd && \
 
 RUN systemctl enable keyd
 
-
-RUN systemctl enable bootc-fetch-apply-updates.timer
-
-RUN bootc container lint
+RUN systemctl enable bootc-fetch-apply-updates.timer && \
+    bootc container lint
