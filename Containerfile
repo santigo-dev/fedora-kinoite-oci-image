@@ -4,12 +4,9 @@ FROM quay.io/fedora-ostree-desktops/kinoite:44
 RUN dnf -y update && \
     dnf -y install \
     stow \
-    keyd \
     just \
     zsh && \
     dnf clean all
-
-RUN systemctl enable keyd
 
 # COPR Packages
 
@@ -32,6 +29,16 @@ RUN dnf -y copr enable birkch/Koi && \
         hicolor-icon-theme \
         && \
     dnf clean all
+
+# Keyd
+RUN dnf -y copr enable alternateved/keyd && \
+    dnf -y install \
+        keyd \
+        && \
+    dnf clean all
+
+RUN systemctl enable keyd
+
 
 RUN systemctl enable bootc-fetch-apply-updates.timer
 
