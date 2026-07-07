@@ -1,6 +1,6 @@
 FROM quay.io/fedora-ostree-desktops/kinoite:44
 
-# Packages
+# packages
 RUN dnf -y update && \
     dnf -y install \
     stow \
@@ -8,16 +8,13 @@ RUN dnf -y update && \
     zsh && \
     dnf clean all
 
-# COPR Packages
-
-# Ghostty
+# third-party software: COPR packages
 RUN dnf -y copr enable scottames/ghostty && \
-    dnf -y install ghostty && \
-    dnf clean all
-
-# Koi
-RUN dnf -y copr enable birkch/Koi && \
+    dnf -y copr enable alternateved/keyd && \
+    dnf -y copr enable birkch/Koi && \
     dnf -y install \
+        ghostty \
+        keyd \
         Koi \
         cmake \
         extra-cmake-modules \
@@ -26,18 +23,9 @@ RUN dnf -y copr enable birkch/Koi && \
         kf6-kcoreaddons-devel \
         kf6-kwidgetsaddons-devel \
         qt6-qtbase-devel \
-        hicolor-icon-theme \
-        && \
-    dnf clean all
-
-# Keyd
-RUN dnf -y copr enable alternateved/keyd && \
-    dnf -y install \
-        keyd \
-        && \
-    dnf clean all
-
-RUN systemctl enable keyd
+        hicolor-icon-theme && \
+    dnf clean all && \
+    systemctl enable keyd
 
 RUN systemctl enable bootc-fetch-apply-updates.timer && \
     bootc container lint
