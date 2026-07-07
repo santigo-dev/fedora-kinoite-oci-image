@@ -8,9 +8,9 @@ RUN dnf -y install \
     dnf clean all
 
 # third-party software: COPR packages
-RUN dnf -y copr enable scottames/ghostty && \
-    dnf -y copr enable alternateved/keyd && \
-    dnf -y copr enable birkch/Koi && \
+RUN dnf -q -y copr enable scottames/ghostty && \
+    dnf -q -y copr enable alternateved/keyd && \
+    dnf -q -y copr enable birkch/Koi && \
     dnf -y install \
         ghostty \
         keyd \
