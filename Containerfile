@@ -1,11 +1,10 @@
 FROM quay.io/fedora-ostree-desktops/kinoite:44
 
 # packages
-RUN dnf -y update && \
-    dnf -y install \
-    stow \
-    just \
-    zsh && \
+RUN dnf -y install \
+        stow \
+        just \
+        zsh && \
     dnf clean all
 
 # third-party software: COPR packages
@@ -15,15 +14,7 @@ RUN dnf -y copr enable scottames/ghostty && \
     dnf -y install \
         ghostty \
         keyd \
-        Koi \
-        cmake \
-        extra-cmake-modules \
-        kf6-kconfigwidgets-devel \
-        kf6-kconfig-devel \
-        kf6-kcoreaddons-devel \
-        kf6-kwidgetsaddons-devel \
-        qt6-qtbase-devel \
-        hicolor-icon-theme && \
+        Koi && \
     dnf clean all && \
     systemctl enable keyd
 
