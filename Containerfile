@@ -2,6 +2,7 @@ FROM quay.io/fedora-ostree-desktops/kinoite:44
 
 # packages
 RUN dnf -y install \
+        distrobox \
         stow \
         just \
         zsh && \
