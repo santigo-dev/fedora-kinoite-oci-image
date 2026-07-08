@@ -1,23 +1,24 @@
 FROM quay.io/fedora-ostree-desktops/kinoite:44
 
-# packages
+# rpm-fusion & multimedia
 RUN dnf -y install \
-        distrobox \
-        make \
-        gcc \
-        stow \
-        just \
-        zsh && \
+        https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
+        https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm && \
+    dnf config-manager setopt fedora-cisco-openh264.enabled=1 && \
+    dnf swap -y ffmpeg-free ffmpeg --allowerasing && \
+    dnf -y install @multimedia intel-media-driver mesa-va-drivers-freeworld && \
     dnf clean all
 
-# third-party software: COPR packages
+# packages
+RUN dnf -y install \
+        distrobox make gcc stow just zsh && \
+    dnf clean all --setopt="install_weak_deps=False"
+
+# copr
 RUN dnf -q -y copr enable scottames/ghostty && \
     dnf -q -y copr enable alternateved/keyd && \
     dnf -q -y copr enable birkch/Koi && \
-    dnf -y install \
-        ghostty \
-        keyd \
-        Koi && \
+    dnf -y install ghostty keyd Koi && \
     dnf clean all && \
     systemctl enable keyd
 
