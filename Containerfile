@@ -10,13 +10,14 @@ RUN dnf -y install \
         https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-${FEDORA_VERSION}.noarch.rpm && \
     dnf config-manager setopt fedora-cisco-openh264.enabled=1 && \
     dnf swap -y ffmpeg-free ffmpeg --allowerasing && \
-    dnf -y install @multimedia intel-media-driver mesa-va-drivers-freeworld && \
+    dnf -y install \
+        @multimedia intel-media-driver mesa-va-drivers-freeworld && \
     dnf clean all
 
 # packages
 RUN dnf -y install \
-        distrobox make gcc stow just zsh && \
-    dnf clean all --setopt="install_weak_deps=False"
+        distrobox just stow zsh && \
+    dnf clean all
 
 # copr
 RUN dnf -y copr enable scottames/ghostty && \
