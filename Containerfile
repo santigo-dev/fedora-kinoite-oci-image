@@ -1,9 +1,13 @@
-FROM quay.io/fedora-ostree-desktops/kinoite:44
+ARG FEDORA_VERSION=44
+
+FROM quay.io/fedora-ostree-desktops/kinoite:${FEDORA_VERSION}
+
+ARG FEDORA_VERSION
 
 # rpm-fusion & multimedia
 RUN dnf -y install \
-        https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
-        https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm && \
+        https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-${FEDORA_VERSION}.noarch.rpm \
+        https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-${FEDORA_VERSION}.noarch.rpm && \
     dnf config-manager setopt fedora-cisco-openh264.enabled=1 && \
     dnf swap -y ffmpeg-free ffmpeg --allowerasing && \
     dnf -y install @multimedia intel-media-driver mesa-va-drivers-freeworld && \
