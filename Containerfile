@@ -11,7 +11,9 @@ RUN dnf -y install \
     dnf config-manager setopt fedora-cisco-openh264.enabled=1 && \
     dnf swap -y ffmpeg-free ffmpeg --allowerasing && \
     dnf -y install \
-        @multimedia intel-media-driver mesa-va-drivers-freeworld && \
+        @multimedia intel-media-driver mesa-va-drivers-freeworld \
+        libavcodec-freeworld gstreamer1-plugins-bad-freeworld \
+        gstreamer1-plugins-ugly gstreamer1-plugin-libav && \
     dnf clean all
 
 # packages
