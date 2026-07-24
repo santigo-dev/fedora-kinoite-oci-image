@@ -29,5 +29,8 @@ RUN dnf -y copr enable scottames/ghostty && \
     dnf clean all && \
     systemctl enable keyd
 
-RUN systemctl enable bootc-fetch-apply-updates.timer && \
+COPY systemd/bootc-fetch.service /usr/lib/systemd/system/bootc-fetch.service
+COPY systemd/bootc-fetch.timer /usr/lib/systemd/system/bootc-fetch.timer
+
+RUN systemctl enable bootc-fetch.timer && \
     bootc container lint
