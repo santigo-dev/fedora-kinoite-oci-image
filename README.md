@@ -29,6 +29,12 @@ The one manual step is right after a fresh install: you have to switch over to t
 sudo bootc switch ghcr.io/santigo-dev/fedora-kinoite-oci-image:latest
 ```
 
+## References
+
+- [Building your own Atomic (bootc) Desktop](https://fedoramagazine.org/building-your-own-atomic-bootc-desktop/)
+- [KDE-BOOTC](https://github.com/sigulete/kde-bootc)
+- [Bluefin](https://github.com/ublue-os/bluefin)
+
 ## License
 
 GPL-3.0, see LICENSE.
