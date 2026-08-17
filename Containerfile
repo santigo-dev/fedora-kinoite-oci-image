@@ -18,7 +18,11 @@ RUN dnf -y install \
 
 # packages
 RUN dnf -y install \
-        distrobox just stow zsh && \
+        distrobox \
+        just \
+        stow \
+        ydotool \
+        zsh && \
     dnf clean all
 
 # copr
@@ -32,5 +36,6 @@ RUN dnf -y copr enable scottames/ghostty && \
 COPY systemd/bootc-fetch.service /usr/lib/systemd/system/bootc-fetch.service
 COPY systemd/bootc-fetch.timer /usr/lib/systemd/system/bootc-fetch.timer
 
-RUN systemctl enable bootc-fetch.timer && \
+RUN systemctl enable ydotool && \
+    systemctl enable bootc-fetch.timer && \
     bootc container lint
