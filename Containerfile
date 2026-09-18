@@ -8,6 +8,7 @@ RUN dnf -y remove firefox firefox-langpacks && \
 RUN dnf -y install \
         distrobox \
         just \
+        kitty \
         stow \
         ydotool \
         zsh && \
